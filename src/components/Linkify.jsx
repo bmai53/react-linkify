@@ -13,6 +13,7 @@ type Props = {
   hrefDecorator: (string) => string,
   matchDecorator: (string) => Array<Object>,
   textDecorator: (string) => string,
+  ignoreList?: string[]
 };
 
 class Linkify extends React.Component<Props, {}> {
@@ -28,7 +29,7 @@ class Linkify extends React.Component<Props, {}> {
       return string;
     }
 
-    const matches = this.props.matchDecorator(string);
+    const matches = this.props.matchDecorator(string, this.props.ignoreList);
     if (!matches) {
       return string;
     }
